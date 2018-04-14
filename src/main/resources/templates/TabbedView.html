@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <link href="../static/dashboard/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/dashboard/bootstrap/css/bootstrap.min.css}"/>
+    <script src="../static/dashboard/bootstrap/js/bootstrap.js" th:src="@{/dashboard/js/bootstrap.js}"></script>
+    <script src="../static/dashboard/Script/angular.min.js" th:src="@{/dashboard/Script/angular.min.js}"></script>
+    <script src="../static/dashboard/Script/jquery-1.10.2.min.js"
+            th:src="@{/dashboard/Script/jquery-1.10.2.min.js}"></script>
+    <link href="../static/dashboard/Styles/font-awesome.min.css" rel="stylesheet"
+          th:href="@{/dashboard/Styles/font-awesome.min.css}">
+    <!-- NProgress -->
+    <link href="../static/dashboard/Styles/nprogress.css" rel="stylesheet" th:href="@{/dashboard/Styles/nprogress.css}">
+    <!-- iCheck -->
+    <link href="../static/dashboard/Styles/green.css" rel="stylesheet" th:href="@{/dashboard/Styles/green.css}">
+    <!-- bootstrap-progressbar -->
+    <link href="../static/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
+          th:href="@{/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css}">
+    <!-- JQVMap -->
+    <link href="../static/dashboard/Styles/jqvmap.min.css" rel="stylesheet"
+          th:href="@{/dashboard/Styles/jqvmap.min.css}"/>
+
+    <!-- Custom Theme Style -->
+    <link href="../static/dashboard/Styles/custom.min.css" rel="stylesheet"
+          th:href="@{/dashboard/Styles/custom.min.css}">
+    <script src="../static/dashboard/Script/graphs.js" th:src="@{/dashboard/Script/graphs.js}"></script>
+    <script src="../static/dashboard/Script/angular-fusioncharts.min.js"
+            th:src="@{/dashboard/Script/angular-fusioncharts.min.js}"></script>
+
+</head>
+<title>The Dashboard</title>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="dashboard" class="site_title"><i class="fa fa-paw"></i> <span>BYTEHUB</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile">
+                    <div class="profile_pic">
+                        <img src="../static/dashboard/Images/Like.png" alt="..." class="img-circle profile_img"
+                             th:src="@{/dashboard/Images/Like.png}">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>Loggedin User</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+
+                        <ul class="nav side-menu">
+                            <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard <span
+                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="searchview"><i class="fa fa-home"></i> Search<span
+                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="tabbedview"><i class="fa fa-home"></i>Tabbed View<span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+
+                    <a href="/" data-toggle="tooltip" data-placement="top" title="Logout">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <style>
+                        /* Style the tab */
+                        .tab {
+                            overflow: hidden;
+                            border: 1px solid #ccc;
+                            background-color: #f1f1f1;
+                        }
+
+                        /* Style the buttons inside the tab */
+                        .tab button {
+                            background-color: inherit;
+                            float: left;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            padding: 14px 16px;
+                            transition: 0.3s;
+                            font-size: 17px;
+                        }
+
+                        /* Change background color of buttons on hover */
+                        .tab button:hover {
+                            background-color: #ddd;
+                        }
+
+                        /* Create an active/current tablink class */
+                        .tab button.active {
+                            background-color: #ccc;
+                        }
+
+                        /* Style the tab content */
+                        .tabcontent {
+                            display: none;
+                            padding: 6px 12px;
+                            border: 1px solid #ccc;
+                            border-top: none;
+                        }
+                    </style>
+                    </head>
+                    <body>
+
+                    <p>Click on the buttons inside the tabbed menu:</p>
+
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'London')">GATEWAY EVENTS</button>
+                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">GATEWAY EVENT MESSAGES</button>
+                        <button class="tablinks" onclick="openCity(event, 'Paris')">HISTORY EVENTS</button>
+                        <button class="tablinks" onclick="openCity(event, 'Canada')">HISTORY EVENT MESSAGES</button>
+                    </div>
+
+                    <div id="London" class="tabcontent">
+                        <table class="table" id="myTable">
+
+                            <thead>
+                            <tr>
+                                <th>BYTEHUB_ID</th>
+
+                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                <th onclick="sortTable(1)">PACKAGE_ID</th>
+                                <th onclick="sortTable(2)">DIGEST</th>
+                                <th onclick="sortTable(3)">CREATION_DATE</th>
+
+                                <th>CREATION_DATE</th>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>Server2</td>
+                                <td>Windows</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning ">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>2</td>
+                                <td>sever1</td>
+                                <td>IOS</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="info">
+                                <td>3</td>
+                                <td>sserver3</td>
+                                <td>Android</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div id="Paris" class="tabcontent">
+                        <table class="table" id="myTable">
+
+                            <thead>
+                            <tr>
+                                <th>BYTEHUB_ID</th>
+
+                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                <th onclick="sortTable(1)">PACKAGE_ID</th>
+                                <th onclick="sortTable(2)">DIGEST</th>
+                                <th onclick="sortTable(3)">CREATION_DATE</th>
+
+                                <th>CREATION_DATE</th>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>Server2</td>
+                                <td>Windows</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning ">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>2</td>
+                                <td>sever1</td>
+                                <td>IOS</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>3</td>
+                                <td>sserver3</td>
+                                <td>Android</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="Tokyo" class="tabcontent">
+                        <table class="table" id="myTable">
+
+                            <thead>
+                            <tr>
+                                <th>BYTEHUB_ID</th>
+
+                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                <th onclick="sortTable(1)">PACKAGE_ID</th>
+                                <th onclick="sortTable(2)">DIGEST</th>
+                                <th onclick="sortTable(3)">CREATION_DATE</th>
+
+                                <th>CREATION_DATE</th>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>Server2</td>
+                                <td>Windows</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning ">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>2</td>
+                                <td>sever1</td>
+                                <td>IOS</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>3</td>
+                                <td>sserver3</td>
+                                <td>Android</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="Canada" class="tabcontent">
+                        <table class="table" id="myTable">
+
+                            <thead>
+                            <tr>
+                                <th>BYTEHUB_ID</th>
+
+                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                <th onclick="sortTable(1)">PACKAGE_ID</th>
+                                <th onclick="sortTable(2)">DIGEST</th>
+                                <th onclick="sortTable(3)">CREATION_DATE</th>
+
+                                <th>CREATION_DATE</th>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>Server2</td>
+                                <td>Windows</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning ">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>2</td>
+                                <td>sever1</td>
+                                <td>IOS</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>3</td>
+                                <td>sserver3</td>
+                                <td>Android</td>
+                                <td>Credentials can not be verified</td>
+                                <td>Mobile App</td>
+                                <td>Mobile Team</td>
+                                <td>
+                                    <button class="btn btn-warning">View More</button>
+                                </td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                        function openCity(evt, cityName) {
+                            var i, tabcontent, tablinks;
+                            tabcontent = document.getElementsByClassName("tabcontent");
+                            for (i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none";
+                            }
+                            tablinks = document.getElementsByClassName("tablinks");
+                            for (i = 0; i < tablinks.length; i++) {
+                                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                            }
+                            document.getElementById(cityName).style.display = "block";
+                            evt.currentTarget.className += " active";
+                        }
+                    </script>
+
+
+                </div>
+
+            </div>
+            <br/>
+        </div>
+        <footer>
+            <div class="pull-right">
+                Bytehub by ROOTCORE
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+</bodY>
+</html>

@@ -23,18 +23,11 @@ public class TabbedController {
     preparedStatement.setString(3,"test1");
     preparedStatement.setString(4,"test1");
     preparedStatement.setString(5,"test1");
-
     preparedStatement.setTimestamp(6,new java.sql.Timestamp(timestamp.getTime()));
     preparedStatement.executeUpdate();
-
-
-
     resultSet=statement.executeQuery("select * from bytehub_dashboard.gateway_events");
     writeMetaData(resultSet);
         writeResultset(resultSet);
-
-
-
     }
     public void writeMetaData(ResultSet resultSet) throws SQLException{
         System.out.println("the colums in the table are");

@@ -32,9 +32,9 @@ public class TabbedController {
     resultSet=statement.executeQuery("select * from bytehub_dashboard.gateway_events");
     writeMetaData(resultSet);
         writeResultset(resultSet);
-        System.out.println(resultSet);
 
-    System.out.println("information added");
+
+
     }
     public void writeMetaData(ResultSet resultSet) throws SQLException{
         System.out.println("the colums in the table are");

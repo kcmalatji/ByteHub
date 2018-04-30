@@ -1,6 +1,7 @@
 package com.Rootcore.bytehub_dashboard;
 
-import java.sql.Time;
+
+import java.sql.Timestamp;
 
 public class Gateway_event_message {
     public int getId() {
@@ -35,17 +36,21 @@ public class Gateway_event_message {
         this.message = message;
     }
 
-    public Time getCreated_t() {
-        return created_t;
-    }
 
-    public void setCreated_t(Time created_t) {
-        this.created_t = created_t;
-    }
 
     private int id;
     private String bytehub_id;
     private String digest;
     private String message;
-    private Time created_t;
+    private Timestamp created_t;
+
+    public Timestamp getCreated_t() {
+        return created_t;
+    }
+
+    public void setCreated_t(Timestamp created_t) {
+        this.created_t = created_t;
+    }
+
+
 }

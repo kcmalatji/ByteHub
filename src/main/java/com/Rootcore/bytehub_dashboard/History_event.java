@@ -1,6 +1,7 @@
 package com.Rootcore.bytehub_dashboard;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class History_event {
     public int getId() {
@@ -51,13 +52,7 @@ public class History_event {
         this.query = query;
     }
 
-    public Time getCreated_t() {
-        return created_t;
-    }
 
-    public void setCreated_t(Time created_t) {
-        this.created_t = created_t;
-    }
 
     private int id;
     private String bytehub_id;
@@ -65,5 +60,14 @@ public class History_event {
     private String route_id;
     private String operation_id;
     private String query;
-    private Time created_t;
+
+    public Timestamp getCreated_t() {
+        return created_t;
+    }
+
+    public void setCreated_t(Timestamp created_t) {
+        this.created_t = created_t;
+    }
+
+    private Timestamp created_t;
 }

@@ -167,61 +167,77 @@
                     </div>
 
                     <div id="London" class="tabcontent">
+                    <table class="table table-hover" id="myTable">
+
+
+                        <thead>
+                        <tr>
+                            <th>BYTEHUB_ID</th>
+
+                            <th onclick="sortTable(0)">PACKAGE_ID</th>
+                            <th onclick="sortTable(1)">ROUTE_ID</th>
+                            <th onclick="sortTable(2)">QUERY_ID</th>
+                            <th onclick="sortTable(3)">CID</th>
+
+                            <th>CREATION_DATE</th>
+                            <th>ACTION</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr class="success" th:each="data:${data}">
+                            <td th:text="${data.bytehub_id}"></td>
+                            <td th:text="${data.package_id}"></td>
+                            <td th:text="${data.route_id}"></td>
+                            <td th:text="${data.query}"></td>
+                            <td th:text="${data.cid}"></td>
+                            <td th:text="${data.created_t}"></td>
+                            <td>
+                                <button class="btn btn-warning ">View More</button>
+                            </td>
+                        </tr>
+
+
+
+
+                        </tbody>
+
+
+
+
+
+
+                    </table>
+
+                    </div>
+
+                    <div id="Tokyo" class="tabcontent">
                         <table class="table" id="myTable">
 
                             <thead>
                             <tr>
-                                <th>BYTEHUB_ID</th>
-
                                 <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(1)">PACKAGE_ID</th>
                                 <th onclick="sortTable(2)">DIGEST</th>
-                                <th onclick="sortTable(3)">CREATION_DATE</th>
-
+                                <th onclick="sortTable(3)">MESSAGES</th>
                                 <th>CREATION_DATE</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="success">
-                                <td>1</td>
-                                <td>Server2</td>
-                                <td>Windows</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
+
+                            <tr class="success" th:each="data:${gateway_event_messages}">
+                                <td th:text="${data.bytehub_id}"></td>
+                                <td th:text="${data.digest}"></td>
+                                <td th:text="${data.message}"></td>
+                                <td th:text="${data.created_t}"></td>
                                 <td>
                                     <button class="btn btn-warning ">View More</button>
                                 </td>
-                            </tr>
-                            <tr class="danger">
-                                <td>2</td>
-                                <td>sever1</td>
-                                <td>IOS</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>3</td>
-                                <td>sserver3</td>
-                                <td>Android</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-
+                                </tr>
 
 
                             </tbody>
                         </table>
-
                     </div>
 
                     <div id="Paris" class="tabcontent">
@@ -231,108 +247,28 @@
                             <tr>
                                 <th>BYTEHUB_ID</th>
 
-                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(1)">PACKAGE_ID</th>
-                                <th onclick="sortTable(2)">DIGEST</th>
-                                <th onclick="sortTable(3)">CREATION_DATE</th>
+                                <th onclick="sortTable(0)">PACKAGE_ID</th>
+                                <th onclick="sortTable(1)">ROUTE_ID</th>
+                                <th onclick="sortTable(2)">QUERY</th>
+                                <th onclick="sortTable(3)">OPERATION_ID</th>
 
                                 <th>CREATION_DATE</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="success">
-                                <td>1</td>
-                                <td>Server2</td>
-                                <td>Windows</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
+
+                            <tr class="success" th:each="data:${HistoryEventsArray}">
+                                <td th:text="${data.bytehub_id}"></td>
+                                <td th:text="${data.package_id}"></td>
+                                <td th:text="${data.route_id}"></td>
+                                <td th:text="${data.query}"></td>
+                                <td th:text="${data.operation_id}"></td>
+                                <td th:text="${data.created_t}"></td>
                                 <td>
                                     <button class="btn btn-warning ">View More</button>
                                 </td>
                             </tr>
-                            <tr class="success">
-                                <td>2</td>
-                                <td>sever1</td>
-                                <td>IOS</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>3</td>
-                                <td>sserver3</td>
-                                <td>Android</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-
-
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="Tokyo" class="tabcontent">
-                        <table class="table" id="myTable">
-
-                            <thead>
-                            <tr>
-                                <th>BYTEHUB_ID</th>
-
-                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(1)">PACKAGE_ID</th>
-                                <th onclick="sortTable(2)">DIGEST</th>
-                                <th onclick="sortTable(3)">CREATION_DATE</th>
-
-                                <th>CREATION_DATE</th>
-                                <th>ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="success">
-                                <td>1</td>
-                                <td>Server2</td>
-                                <td>Windows</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning ">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>2</td>
-                                <td>sever1</td>
-                                <td>IOS</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>3</td>
-                                <td>sserver3</td>
-                                <td>Android</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-
-
 
                             </tbody>
                         </table>
@@ -342,49 +278,22 @@
 
                             <thead>
                             <tr>
-                                <th>BYTEHUB_ID</th>
-
                                 <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(1)">PACKAGE_ID</th>
-                                <th onclick="sortTable(2)">DIGEST</th>
-                                <th onclick="sortTable(3)">CREATION_DATE</th>
-
+                                <th onclick="sortTable(1)">DIGEST</th>
+                                <th onclick="sortTable(2)">MESSAGES</th>
                                 <th>CREATION_DATE</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="success">
-                                <td>1</td>
-                                <td>Server2</td>
-                                <td>Windows</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
+
+                            <tr class="success" th:each="data:${HistoryEventMessagesArray}">
+                                <td th:text="${data.bytehub_id}"></td>
+                                <td th:text="${data.digest}"></td>
+                                <td th:text="${data.message}"></td>
+                                <td th:text="${data.created_t}"></td>
                                 <td>
                                     <button class="btn btn-warning ">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>2</td>
-                                <td>sever1</td>
-                                <td>IOS</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>3</td>
-                                <td>sserver3</td>
-                                <td>Android</td>
-                                <td>Credentials can not be verified</td>
-                                <td>Mobile App</td>
-                                <td>Mobile Team</td>
-                                <td>
-                                    <button class="btn btn-warning">View More</button>
                                 </td>
                             </tr>
 

@@ -1,6 +1,7 @@
 package com.Rootcore.bytehub_dashboard;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Gateway_event
 {   private int id;
@@ -46,16 +47,29 @@ public class Gateway_event
         this.cid = cid;
     }
 
-    public Time getCreated_t() {
-        return created_t;
-    }
+    private Timestamp created_t;
 
-    public void setCreated_t(Time created_t) {
-        this.created_t = created_t;
-    }
 
     private String route_id;
     private String query;
     private String cid;
-    private Time created_t;
+
+    public String getPackage_id() {
+        return package_id;
+    }
+
+    public void setPackage_id(String package_id) {
+        this.package_id = package_id;
+    }
+
+    private String package_id;
+
+    public Timestamp getCreated_t() {
+        return created_t;
+    }
+
+    public void setCreated_t(Timestamp created_t) {
+        this.created_t = created_t;
+    }
+
 }

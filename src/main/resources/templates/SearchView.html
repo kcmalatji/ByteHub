@@ -185,77 +185,77 @@
                                 <form role="form" autocomplete="off">
                                     <div class="row">
                                         <div class="input-group-btn search-panel">
-                                            <select name="search_param" id="search_param" onchange="test(this)" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+                                            <select name="search_param" id="search_param" onchange="test(this)" class="btn btn-default dropdown-toggle " style="width: 96%" data-toggle="dropdown">
                                                 <option value="0">Select</option>
                                                 <option value="1">BYTEHUB_ID</option>
                                                 <option value="2">PACKAGE_ID</option>
                                                 <option value="3">ROUTE_ID</option>
                                                 <option value="4">DIGEST</option>
-                                                <option value="5">CREATION_DATE</option>
+                                                <option value="5">QUERY</option>
                                             </select>
                                         </div>
                                         <div class="entry input-group " id="Search_query">
-                                            <input class="form-control" name="fields[]" type="text" placeholder="BYTEHUB_ID" />
+                                            <input class="form-control" id="myInput" onkeyup="myFunction()" name="fields[]" style="width: 96%" type="text" placeholder="BYTEHUB_ID" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-group-btn search-panel">
-                                            <select name="search_param" id="search_param2" onchange="test(this)" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+                                            <select name="search_param" id="search_param2" onchange="test(this)" class="btn btn-default dropdown-toggle " style="width: 96%" data-toggle="dropdown">
                                                 <option value="0">Select</option>
                                                 <option value="1">BYTEHUB_ID</option>
                                                 <option value="2">PACKAGE_ID</option>
                                                 <option value="3">ROUTE_ID</option>
                                                 <option value="4">DIGEST</option>
-                                                <option value="5">CREATION_DATE</option>
+                                                <option value="5">QUERY</option>
                                             </select>
                                         </div>
                                         <div class="entry input-group " id="Search_query2">
-                                            <input class="form-control" name="fields[]" type="text" placeholder="PACKAGE_ID" />
+                                            <input class="form-control" id="myInput1" onkeyup="myFunction1()" name="fields[]" style="width: 96%" type="text" placeholder="PACKAGE_ID" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-group-btn search-panel">
-                                            <select name="search_param" id="search_param3"onchange="test(this)" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+                                            <select name="search_param" id="search_param3"onchange="test(this)" style="width: 96%" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
                                                 <option value="0">Select</option>
                                                 <option value="1">BYTEHUB_ID</option>
                                                 <option value="2">PACKAGE_ID</option>
                                                 <option value="3">ROUTE_ID</option>
                                                 <option value="4">DIGEST</option>
-                                                <option value="5">CREATION_DATE</option>
+                                                <option value="5">QUERY</option>
                                             </select>
                                         </div>
                                         <div class="entry input-group " id="Search_query3">
-                                            <input class="form-control" name="fields[]" type="text" placeholder="ROUTE_ID" />
+                                            <input class="form-control" id="myInput2" onkeyup="myFunction2()"style="width: 96%"  name="fields[]" type="text" placeholder="ROUTE_ID" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-group-btn search-panel">
-                                            <select name="search_param" id="search_param4" onchange="test(this)" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+                                            <select name="search_param" id="search_param4" onchange="test(this)" style="width: 96%" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
                                                 <option value="0">Select</option>
                                                 <option value="1">BYTEHUB_ID</option>
                                                 <option value="2">PACKAGE_ID</option>
                                                 <option value="3">ROUTE_ID</option>
                                                 <option value="4">DIGEST</option>
-                                                <option value="5">CREATION_DATE</option>
+                                                <option value="5">QUERY</option>
                                             </select>
                                         </div>
                                         <div class="entry input-group " id="Search_query4">
-                                            <input class="form-control" name="fields[]" type="text" placeholder="DIGEST" />
+                                            <input class="form-control" name="fields[]" id="myInput3" style="width: 96%" onkeyup="myFunction3()" type="text" placeholder="DIGEST" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="row input-group-btn search-panel">
-                                            <select name="search_param" id="search_param5"onchange="test(this)" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+                                            <select name="search_param" id="search_param5"onchange="test(this)" style="width: 96%" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
                                                 <option value="0">Select</option>
                                                 <option value="1">BYTEHUB_ID</option>
                                                 <option value="2">PACKAGE_ID</option>
                                                 <option value="3">ROUTE_ID</option>
                                                 <option value="4">DIGEST</option>
-                                                <option value="5">CREATION_DATE</option>
+                                                <option value="5">QUERY</option>
                                             </select>
                                         </div>
                                         <div class="entry input-group " id="Search_query5">
-                                            <input class="form-control" name="fields[]" type="text" placeholder="CREATION_DATE" />
+                                            <input class="form-control" name="fields[]" id="myInput4" style="width: 96%" onkeyup="myFunction4()"type="text" placeholder="CREATION_DATE" />
                                         </div>
                                     </div></form>
                         </li>
@@ -324,10 +324,119 @@
         <div class="row">
 
             <div class="col-md-6">
+                <style>
+                    #myInput,myInput1,myInput2,myInput3,myInput4{
+                background-image: url('/css/searchicon.png');
+                background-position: 10px 10px;
+                background-repeat: no-repeat;
+                width: 100%;
+                font-size: 16px;
+                padding: 12px 20px 12px 40px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+                }
 
+                #myTable {
+                    border-collapse: collapse;
+                    width: 100%;
+                    border: 1px solid #ddd;
+                    font-size: 18px;
+                }
 
+                #myTable th, #myTable td {
+                    text-align: left;
+                    padding: 12px;
+                }
+
+                #myTable tr {
+                    border-bottom: 1px solid #ddd;
+                }
+
+                #myTable tr.header, #myTable tr:hover {
+                    background-color: #f1f1f1;
+                }
+</style>
+                <script>
+                    function myFunction() {
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[0];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }}
+                        function myFunction1() {
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("myInput1");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[1];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }}function myFunction2() {
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("myInput2");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[2];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }}function myFunction3() {
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("myInput3");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[3];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }}function myFunction4() {
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("myInput4");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[4];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }}
+                </script>
             </div>
-
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
             <table class="table" id="myTable">
 
                 <thead>
@@ -337,7 +446,7 @@
                     <th onclick="sortTable(0)">PACKAGE_ID</th>
                     <th onclick="sortTable(1)">ROUTE_ID
                     <th onclick="sortTable(2)">DIGEST</th>
-                    <th onclick="sortTable(3)">CREATION_DATE</th>
+                    <th onclick="sortTable(3)">QUERY</th>
 
                     <th>CREATION_DATE</th>
                     <th>Action</th>

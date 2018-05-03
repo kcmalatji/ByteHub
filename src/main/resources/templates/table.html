@@ -43,6 +43,14 @@
 
 <h2>My Customers</h2>
 
+
+<!--SELECT a.id, a.bytehub_id, a.cid, b.id, b.bytehub_id, b.digest, b.message from gateway_events a, gateway_event_messages b where a.id=b.id-->
+
+<!--SELECT a.bytehub_id, a.package_id, a.cid, a.route_id, b.digest, b.message, c.operation_id, c.query, c.route_id, d.digest, d.message, d.created_t-->
+<!--from gateway_events a, gateway_event_messages b, history_events c, history_event_messages d-->
+<!--where a.id=b.id=c.id=d.id-->
+
+
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 <table id="myTable">

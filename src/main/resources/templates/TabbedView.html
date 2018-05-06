@@ -1,337 +1,778 @@
-<!doctype html>
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
 <html lang="en" ng-app="myApp" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <head>
-    <link href="../static/dashboard/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-          th:href="@{/dashboard/bootstrap/css/bootstrap.min.css}"/>
-    <script src="../static/dashboard/bootstrap/js/bootstrap.js" th:src="@{/dashboard/js/bootstrap.js}"></script>
-    <script src="../static/dashboard/Script/angular.min.js" th:src="@{/dashboard/Script/angular.min.js}"></script>
-    <script src="../static/dashboard/Script/jquery-1.10.2.min.js"
-            th:src="@{/dashboard/Script/jquery-1.10.2.min.js}"></script>
-    <link href="../static/dashboard/Styles/font-awesome.min.css" rel="stylesheet"
-          th:href="@{/dashboard/Styles/font-awesome.min.css}">
-    <!-- NProgress -->
-    <link href="../static/dashboard/Styles/nprogress.css" rel="stylesheet" th:href="@{/dashboard/Styles/nprogress.css}">
-    <!-- iCheck -->
-    <link href="../static/dashboard/Styles/green.css" rel="stylesheet" th:href="@{/dashboard/Styles/green.css}">
-    <!-- bootstrap-progressbar -->
-    <link href="../static/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
-          th:href="@{/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css}">
-    <!-- JQVMap -->
-    <link href="../static/dashboard/Styles/jqvmap.min.css" rel="stylesheet"
-          th:href="@{/dashboard/Styles/jqvmap.min.css}"/>
-
-    <!-- Custom Theme Style -->
-    <link href="../static/dashboard/Styles/custom.min.css" rel="stylesheet"
-          th:href="@{/dashboard/Styles/custom.min.css}">
-    <script src="../static/dashboard/Script/graphs.js" th:src="@{/dashboard/Script/graphs.js}"></script>
-    <script src="../static/dashboard/Script/angular-fusioncharts.min.js"
-            th:src="@{/dashboard/Script/angular-fusioncharts.min.js}"></script>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bytehub Dashboard - tabbedview</title>
+    <!-- Bootstrap core CSS-->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <!-- Custom fonts for this template-->
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/Styles/font-awesome.min.css}">
+    <!-- Page level plugin CSS-->
+    <link href="../static/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.css}">
+    <!-- Custom styles for this template-->
+    <link href="../static/css/sb-admin.css" rel="stylesheet" th:href="@{/css/sb-admin.css}">
 </head>
-<title>The Dashboard</title>
 
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="dashboard" class="site_title"><i class="fa fa-paw"></i> <span>BYTEHUB</span></a>
-                </div>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="dashboard">ByteHub</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="dashboard">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
 
-                <div class="clearfix"></div>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a class="nav-link" href="searchview">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Serarch view</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a class="nav-link" href="tabbedview">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Tabbed View</span>
+                </a>
+            </li>
 
-                <!-- menu profile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <img src="../static/dashboard/Images/Like.png" alt="..." class="img-circle profile_img"
-                             th:src="@{/dashboard/Images/Like.png}">
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown">
+
+
+            </li>
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for...">
+                        <span class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
                     </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>Loggedin User</h2>
-                    </div>
-                </div>
-                <!-- /menu profile quick info -->
-
-                <br/>
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-
-                        <ul class="nav side-menu">
-                            <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard <span
-                                    class="fa fa-chevron-down"></span></a>
-                            <li><a href="searchview"><i class="fa fa-home"></i> Search<span
-                                    class="fa fa-chevron-down"></span></a>
-                            <li><a href="tabbedview"><i class="fa fa-home"></i>Tabbed View<span
-                                    class="fa fa-chevron-down"></span></a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-
-                    <a href="/" data-toggle="tooltip" data-placement="top" title="Logout">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
-            </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li><a href="/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-
-
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <style>
-                        /* Style the tab */
-                        .tab {
-                            overflow: hidden;
-                            border: 1px solid #ccc;
-                            background-color: #f1f1f1;
-                        }
-
-                        /* Style the buttons inside the tab */
-                        .tab button {
-                            background-color: inherit;
-                            float: left;
-                            border: none;
-                            outline: none;
-                            cursor: pointer;
-                            padding: 14px 16px;
-                            transition: 0.3s;
-                            font-size: 17px;
-                        }
-
-                        /* Change background color of buttons on hover */
-                        .tab button:hover {
-                            background-color: #ddd;
-                        }
-
-                        /* Create an active/current tablink class */
-                        .tab button.active {
-                            background-color: #ccc;
-                        }
-
-                        /* Style the tab content */
-                        .tabcontent {
-                            display: none;
-                            padding: 6px 12px;
-                            border: 1px solid #ccc;
-                            border-top: none;
-                        }
-                    </style>
-                    </head>
-                    <body>
-
-                    <p>Click on the buttons inside the tabbed menu:</p>
-
-                    <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'London')">GATEWAY EVENTS</button>
-                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">GATEWAY EVENT MESSAGES</button>
-                        <button class="tablinks" onclick="openCity(event, 'Paris')">HISTORY EVENTS</button>
-                        <button class="tablinks" onclick="openCity(event, 'Canada')">HISTORY EVENT MESSAGES</button>
-                    </div>
-
-                    <div id="London" class="tabcontent">
-                    <table class="table table-hover" id="myTable">
-
-
-                        <thead>
-                        <tr>
-                            <th>BYTEHUB_ID</th>
-
-                            <th onclick="sortTable(0)">PACKAGE_ID</th>
-                            <th onclick="sortTable(1)">ROUTE_ID</th>
-                            <th onclick="sortTable(2)">QUERY_ID</th>
-                            <th onclick="sortTable(3)">CID</th>
-
-                            <th>CREATION_DATE</th>
-                            <th>ACTION</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr class="success" th:each="data:${data}">
-                            <td th:text="${data.bytehub_id}"></td>
-                            <td th:text="${data.package_id}"></td>
-                            <td th:text="${data.route_id}"></td>
-                            <td th:text="${data.query}"></td>
-                            <td th:text="${data.cid}"></td>
-                            <td th:text="${data.created_t}"></td>
-                            <td>
-                                <button class="btn btn-warning ">View More</button>
-                            </td>
-                        </tr>
-
-
-
-
-                        </tbody>
-
-
-
-
-
-
-                    </table>
-
-                    </div>
-
-                    <div id="Tokyo" class="tabcontent">
-                        <table class="table" id="myTable">
-
-                            <thead>
-                            <tr>
-                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(2)">DIGEST</th>
-                                <th onclick="sortTable(3)">MESSAGES</th>
-                                <th>CREATION_DATE</th>
-                                <th>ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr class="success" th:each="data:${gateway_event_messages}">
-                                <td th:text="${data.bytehub_id}"></td>
-                                <td th:text="${data.digest}"></td>
-                                <td th:text="${data.message}"></td>
-                                <td th:text="${data.created_t}"></td>
-                                <td>
-                                    <button class="btn btn-warning ">View More</button>
-                                </td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="Paris" class="tabcontent">
-                        <table class="table" id="myTable">
-
-                            <thead>
-                            <tr>
-                                <th>BYTEHUB_ID</th>
-
-                                <th onclick="sortTable(0)">PACKAGE_ID</th>
-                                <th onclick="sortTable(1)">ROUTE_ID</th>
-                                <th onclick="sortTable(2)">QUERY</th>
-                                <th onclick="sortTable(3)">OPERATION_ID</th>
-
-                                <th>CREATION_DATE</th>
-                                <th>ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr class="success" th:each="data:${HistoryEventsArray}">
-                                <td th:text="${data.bytehub_id}"></td>
-                                <td th:text="${data.package_id}"></td>
-                                <td th:text="${data.route_id}"></td>
-                                <td th:text="${data.query}"></td>
-                                <td th:text="${data.operation_id}"></td>
-                                <td th:text="${data.created_t}"></td>
-                                <td>
-                                    <button class="btn btn-warning ">View More</button>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="Canada" class="tabcontent">
-                        <table class="table" id="myTable">
-
-                            <thead>
-                            <tr>
-                                <th onclick="sortTable(0)">BYTEHUB_ID</th>
-                                <th onclick="sortTable(1)">DIGEST</th>
-                                <th onclick="sortTable(2)">MESSAGES</th>
-                                <th>CREATION_DATE</th>
-                                <th>ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr class="success" th:each="data:${HistoryEventMessagesArray}">
-                                <td th:text="${data.bytehub_id}"></td>
-                                <td th:text="${data.digest}"></td>
-                                <td th:text="${data.message}"></td>
-                                <td th:text="${data.created_t}"></td>
-                                <td>
-                                    <button class="btn btn-warning ">View More</button>
-                                </td>
-                            </tr>
-
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <script>
-                        function openCity(evt, cityName) {
-                            var i, tabcontent, tablinks;
-                            tabcontent = document.getElementsByClassName("tabcontent");
-                            for (i = 0; i < tabcontent.length; i++) {
-                                tabcontent[i].style.display = "none";
-                            }
-                            tablinks = document.getElementsByClassName("tablinks");
-                            for (i = 0; i < tablinks.length; i++) {
-                                tablinks[i].className = tablinks[i].className.replace(" active", "");
-                            }
-                            document.getElementById(cityName).style.display = "block";
-                            evt.currentTarget.className += " active";
-                        }
-                    </script>
-
-
-                </div>
-
-            </div>
-            <br/>
-        </div>
-        <footer>
-            <div class="pull-right">
-                Bytehub by ROOTCORE
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
     </div>
+</nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="dashboard">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>
+        <!-- Example DataTables Card-->
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <style>
+                /* Style the tab */
+                .tab {
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    background-color: #f1f1f1;
+                }
+
+                /* Style the buttons inside the tab */
+                .tab button {
+                    background-color: inherit;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    transition: 0.3s;
+                    font-size: 17px;
+                }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+                /* Style the tab content */
+                .tabcontent {
+                    display: none;
+                    padding: 6px 12px;
+                    border: 1px solid #ccc;
+                    border-top: none;
+                }
+            </style>
+            </head>
+
+
+            <p>Click on the buttons inside the tabbed menu:</p>
+
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'GATEWAY')">GATEWAY EVENTS</button>
+                <button class="tablinks" onclick="openCity(event, 'GATEWAYMESSAGES')">GATEWAY EVENT MESSAGES</button>
+                <button class="tablinks" onclick="openCity(event, 'HISTORY')">HISTORY EVENTS</button>
+                <button class="tablinks" onclick="openCity(event, 'HISTORYMESSAGES')">HISTORY EVENT MESSAGES</button>
+            </div>
+
+            <div id="GATEWAY" class="tabcontent">
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i>GATEWAY EVENTS</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>BYTEHUB_ID</th>
+                                    <th>PACKAGE_ID</th>
+                                    <th>ROUTE_ID</th>
+                                    <th>QUERY_ID</th>
+                                    <th>CID</th>
+                                    <th>CREATION_DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr  th:each="data:${data}">
+                                    <td th:text="${data.bytehub_id}"></td>
+                                    <td th:text="${data.package_id}"></td>
+                                    <td th:text="${data.route_id}"></td>
+                                    <td th:text="${data.query}"></td>
+                                    <td th:text="${data.cid}"></td>
+                                    <td th:text="${data.created_t}"></td>
+                                    <td>
+                                        <button class="btn btn-warning " data-toggle="modal" data-target="#myModal">View More</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated hourly</div>
+                </div>
+
+            </div>
+
+            <div id="GATEWAYMESSAGES" class="tabcontent">
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> GATEWAY EVENT MESSAGES</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                    <th onclick="sortTable(2)">DIGEST</th>
+                                    <th onclick="sortTable(3)">MESSAGES</th>
+                                    <th>CREATION_DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr  th:each="data:${gateway_event_messages}">
+                                    <td th:text="${data.bytehub_id}"></td>
+                                    <td th:text="${data.digest}"></td>
+                                    <td th:text="${data.message}"></td>
+                                    <td th:text="${data.created_t}"></td>
+                                    <td>
+                                        <button class="btn btn-warning " data-toggle="modal" data-target="#myModal">View More</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated hourly</div>
+                </div>
+
+            </div>
+
+            <div id="HISTORY" class="tabcontent">
+
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> HISTORY EVENTS</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>BYTEHUB_ID</th>
+                                    <th>PACKAGE_ID</th>
+                                    <th>ROUTE_ID</th>
+                                    <th>QUERY_ID</th>
+                                    <th>OPERATION_ID</th>
+                                    <th>CREATION_DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr class="success" th:each="data:${HistoryEventsArray}">
+                                    <td th:text="${data.bytehub_id}"></td>
+                                    <td th:text="${data.package_id}"></td>
+                                    <td th:text="${data.route_id}"></td>
+                                    <td th:text="${data.query}"></td>
+                                    <td th:text="${data.operation_id}"></td>
+                                    <td th:text="${data.created_t}"></td>
+                                    <td>
+                                        <button class="btn btn-warning "data-toggle="modal" data-target="#myModal">View More</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated hourly</div>
+                </div>
+
+
+            </div>
+            <div id="HISTORYMESSAGES" class="tabcontent">
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> GATEWAY EVENT MESSAGES</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">BYTEHUB_ID</th>
+                                    <th onclick="sortTable(2)">DIGEST</th>
+                                    <th onclick="sortTable(3)">MESSAGES</th>
+                                    <th>CREATION_DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="success" th:each="data:${HistoryEventMessagesArray}">
+                                    <td th:text="${data.bytehub_id}"></td>
+                                    <td th:text="${data.digest}"></td>
+                                    <td th:text="${data.message}"></td>
+                                    <td th:text="${data.created_t}"></td>
+                                    <td>
+                                        <button class="btn btn-warning " data-toggle="modal" data-target="#myModal">View More</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated hourly</div>
+                </div>
+
+
+            </div>
+            <script>
+                function openCity(evt, cityName) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+            </script>
+
+
+        </div>
+
+    </div>
+
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Rootcore.io</small>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="myModal" role="dialog" >
+        <div class="modal-lg modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" >BYTEHUB INFO </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><p>BYTEHUB_ID</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>PACKAGE_ID</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>ROUTE_ID</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>DIGEST</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>QUERY</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>CID</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>MESSAGE</p><p th:text="${bytehub_id}"></p></li>
+                        <li><p>CREATION_DATE</p><p th:text="${bytehub_id}"></p></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js" th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="../static/vendor/datatables/jquery.dataTables.js" th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+    <script src="../static/vendor/datatables/dataTables.bootstrap4.js" th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../static/js/sb-admin.min.js" th:src="@{/js/sb-admin.min.js}"></script>
+    <!-- Custom scripts for this page-->
+    <script src="../static/js/sb-admin-datatables.min.js" th:src="@{/js/sb-admin-datatables.min.js}"></script>
 </div>
-</bodY>
+</body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="en" ng-app="myApp" xmlns:th="http://www.springframework.org/schema/data/jaxb">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+<!--<meta charset="utf-8">-->
+<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+<!--<head>-->
+    <!--<link href="../static/dashboard/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
+          <!--th:href="@{/dashboard/bootstrap/css/bootstrap.min.css}"/>-->
+    <!--<script src="../static/dashboard/bootstrap/js/bootstrap.js" th:src="@{/dashboard/js/bootstrap.js}"></script>-->
+    <!--<script src="../static/dashboard/Script/angular.min.js" th:src="@{/dashboard/Script/angular.min.js}"></script>-->
+    <!--<script src="../static/dashboard/Script/jquery-1.10.2.min.js"-->
+            <!--th:src="@{/dashboard/Script/jquery-1.10.2.min.js}"></script>-->
+    <!--<link href="../static/dashboard/Styles/font-awesome.min.css" rel="stylesheet"-->
+          <!--th:href="@{/dashboard/Styles/font-awesome.min.css}">-->
+    <!--&lt;!&ndash; NProgress &ndash;&gt;-->
+    <!--<link href="../static/dashboard/Styles/nprogress.css" rel="stylesheet" th:href="@{/dashboard/Styles/nprogress.css}">-->
+    <!--&lt;!&ndash; iCheck &ndash;&gt;-->
+    <!--<link href="../static/dashboard/Styles/green.css" rel="stylesheet" th:href="@{/dashboard/Styles/green.css}">-->
+    <!--&lt;!&ndash; bootstrap-progressbar &ndash;&gt;-->
+    <!--<link href="../static/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"-->
+          <!--th:href="@{/dashboard/Styles/bootstrap-progressbar-3.3.4.min.css}">-->
+    <!--&lt;!&ndash; JQVMap &ndash;&gt;-->
+    <!--<link href="../static/dashboard/Styles/jqvmap.min.css" rel="stylesheet"-->
+          <!--th:href="@{/dashboard/Styles/jqvmap.min.css}"/>-->
+
+    <!--&lt;!&ndash; Custom Theme Style &ndash;&gt;-->
+    <!--<link href="../static/dashboard/Styles/custom.min.css" rel="stylesheet"-->
+          <!--th:href="@{/dashboard/Styles/custom.min.css}">-->
+    <!--<script src="../static/dashboard/Script/graphs.js" th:src="@{/dashboard/Script/graphs.js}"></script>-->
+    <!--<script src="../static/dashboard/Script/angular-fusioncharts.min.js"-->
+            <!--th:src="@{/dashboard/Script/angular-fusioncharts.min.js}"></script>-->
+
+<!--</head>-->
+<!--<title>The Dashboard</title>-->
+
+<!--<body class="nav-md">-->
+<!--<div class="container body">-->
+    <!--<div class="main_container">-->
+        <!--<div class="col-md-3 left_col">-->
+            <!--<div class="left_col scroll-view">-->
+                <!--<div class="navbar nav_title" style="border: 0;">-->
+                    <!--<a href="dashboard" class="site_title"><i class="fa fa-paw"></i> <span>BYTEHUB</span></a>-->
+                <!--</div>-->
+
+                <!--<div class="clearfix"></div>-->
+
+                <!--&lt;!&ndash; menu profile quick info &ndash;&gt;-->
+                <!--<div class="profile">-->
+                    <!--<div class="profile_pic">-->
+                        <!--<img src="../static/dashboard/Images/Like.png" alt="..." class="img-circle profile_img"-->
+                             <!--th:src="@{/dashboard/Images/Like.png}">-->
+                    <!--</div>-->
+                    <!--<div class="profile_info">-->
+                        <!--<span>Welcome,</span>-->
+                        <!--<h2>Loggedin User</h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /menu profile quick info &ndash;&gt;-->
+
+                <!--<br/>-->
+
+                <!--&lt;!&ndash; sidebar menu &ndash;&gt;-->
+                <!--<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">-->
+                    <!--<div class="menu_section">-->
+
+                        <!--<ul class="nav side-menu">-->
+                            <!--<li><a href="dashboard"><i class="fa fa-home"></i> Dashboard <span-->
+                                    <!--class="fa fa-chevron-down"></span></a>-->
+                            <!--<li><a href="searchview"><i class="fa fa-home"></i> Search<span-->
+                                    <!--class="fa fa-chevron-down"></span></a>-->
+                            <!--<li><a href="tabbedview"><i class="fa fa-home"></i>Tabbed View<span-->
+                                    <!--class="fa fa-chevron-down"></span></a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--&lt;!&ndash; /sidebar menu &ndash;&gt;-->
+
+                <!--&lt;!&ndash; /menu footer buttons &ndash;&gt;-->
+                <!--<div class="sidebar-footer hidden-small">-->
+
+                    <!--<a href="/" data-toggle="tooltip" data-placement="top" title="Logout">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /menu footer buttons &ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; top navigation &ndash;&gt;-->
+        <!--<div class="top_nav">-->
+            <!--<div class="nav_menu">-->
+                <!--<nav>-->
+                    <!--<div class="nav toggle">-->
+                        <!--<a id="menu_toggle"><i class="fa fa-bars"></i></a>-->
+                    <!--</div>-->
+
+                    <!--<ul class="nav navbar-nav navbar-right">-->
+
+                        <!--<li><a href="/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>-->
+
+                    <!--</ul>-->
+                <!--</nav>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /top navigation &ndash;&gt;-->
+
+        <!--&lt;!&ndash; page content &ndash;&gt;-->
+        <!--<div class="right_col" role="main">-->
+
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                    <!--<style>-->
+                        <!--/* Style the tab */-->
+                        <!--.tab {-->
+                            <!--overflow: hidden;-->
+                            <!--border: 1px solid #ccc;-->
+                            <!--background-color: #f1f1f1;-->
+                        <!--}-->
+
+                        <!--/* Style the buttons inside the tab */-->
+                        <!--.tab button {-->
+                            <!--background-color: inherit;-->
+                            <!--float: left;-->
+                            <!--border: none;-->
+                            <!--outline: none;-->
+                            <!--cursor: pointer;-->
+                            <!--padding: 14px 16px;-->
+                            <!--transition: 0.3s;-->
+                            <!--font-size: 17px;-->
+                        <!--}-->
+
+                        <!--/* Change background color of buttons on hover */-->
+                        <!--.tab button:hover {-->
+                            <!--background-color: #ddd;-->
+                        <!--}-->
+
+                        <!--/* Create an active/current tablink class */-->
+                        <!--.tab button.active {-->
+                            <!--background-color: #ccc;-->
+                        <!--}-->
+
+                        <!--/* Style the tab content */-->
+                        <!--.tabcontent {-->
+                            <!--display: none;-->
+                            <!--padding: 6px 12px;-->
+                            <!--border: 1px solid #ccc;-->
+                            <!--border-top: none;-->
+                        <!--}-->
+                    <!--</style>-->
+                    <!--</head>-->
+                    <!--<body>-->
+
+                    <!--<p>Click on the buttons inside the tabbed menu:</p>-->
+
+                    <!--<div class="tab">-->
+                        <!--<button class="tablinks" onclick="openCity(event, 'London')">GATEWAY EVENTS</button>-->
+                        <!--<button class="tablinks" onclick="openCity(event, 'Tokyo')">GATEWAY EVENT MESSAGES</button>-->
+                        <!--<button class="tablinks" onclick="openCity(event, 'Paris')">HISTORY EVENTS</button>-->
+                        <!--<button class="tablinks" onclick="openCity(event, 'Canada')">HISTORY EVENT MESSAGES</button>-->
+                    <!--</div>-->
+
+                    <!--<div id="London" class="tabcontent">-->
+                    <!--<table class="table table-hover" id="myTable">-->
+
+
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>BYTEHUB_ID</th>-->
+
+                            <!--<th onclick="sortTable(0)">PACKAGE_ID</th>-->
+                            <!--<th onclick="sortTable(1)">ROUTE_ID</th>-->
+                            <!--<th onclick="sortTable(2)">QUERY_ID</th>-->
+                            <!--<th onclick="sortTable(3)">CID</th>-->
+
+                            <!--<th>CREATION_DATE</th>-->
+                            <!--<th>ACTION</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+
+                        <!--<tbody>-->
+                        <!--<tr class="success" th:each="data:${data}">-->
+                            <!--<td th:text="${data.bytehub_id}"></td>-->
+                            <!--<td th:text="${data.package_id}"></td>-->
+                            <!--<td th:text="${data.route_id}"></td>-->
+                            <!--<td th:text="${data.query}"></td>-->
+                            <!--<td th:text="${data.cid}"></td>-->
+                            <!--<td th:text="${data.created_t}"></td>-->
+                            <!--<td>-->
+                                <!--<button class="btn btn-warning ">View More</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+
+
+
+
+                        <!--</tbody>-->
+
+
+
+
+
+
+                    <!--</table>-->
+
+                    <!--</div>-->
+
+                    <!--<div id="Tokyo" class="tabcontent">-->
+                        <!--<table class="table" id="myTable">-->
+
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th onclick="sortTable(0)">BYTEHUB_ID</th>-->
+                                <!--<th onclick="sortTable(2)">DIGEST</th>-->
+                                <!--<th onclick="sortTable(3)">MESSAGES</th>-->
+                                <!--<th>CREATION_DATE</th>-->
+                                <!--<th>ACTION</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+
+                            <!--<tr class="success" th:each="data:${gateway_event_messages}">-->
+                                <!--<td th:text="${data.bytehub_id}"></td>-->
+                                <!--<td th:text="${data.digest}"></td>-->
+                                <!--<td th:text="${data.message}"></td>-->
+                                <!--<td th:text="${data.created_t}"></td>-->
+                                <!--<td>-->
+                                    <!--<button class="btn btn-warning ">View More</button>-->
+                                <!--</td>-->
+                                <!--</tr>-->
+
+
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+
+                    <!--<div id="Paris" class="tabcontent">-->
+                        <!--<table class="table" id="myTable">-->
+
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th>BYTEHUB_ID</th>-->
+
+                                <!--<th onclick="sortTable(0)">PACKAGE_ID</th>-->
+                                <!--<th onclick="sortTable(1)">ROUTE_ID</th>-->
+                                <!--<th onclick="sortTable(2)">QUERY</th>-->
+                                <!--<th onclick="sortTable(3)">OPERATION_ID</th>-->
+
+                                <!--<th>CREATION_DATE</th>-->
+                                <!--<th>ACTION</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+
+                            <!--<tr class="success" th:each="data:${HistoryEventsArray}">-->
+                                <!--<td th:text="${data.bytehub_id}"></td>-->
+                                <!--<td th:text="${data.package_id}"></td>-->
+                                <!--<td th:text="${data.route_id}"></td>-->
+                                <!--<td th:text="${data.query}"></td>-->
+                                <!--<td th:text="${data.operation_id}"></td>-->
+                                <!--<td th:text="${data.created_t}"></td>-->
+                                <!--<td>-->
+                                    <!--<button class="btn btn-warning ">View More</button>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div id="Canada" class="tabcontent">-->
+                        <!--<table class="table" id="myTable">-->
+
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th onclick="sortTable(0)">BYTEHUB_ID</th>-->
+                                <!--<th onclick="sortTable(1)">DIGEST</th>-->
+                                <!--<th onclick="sortTable(2)">MESSAGES</th>-->
+                                <!--<th>CREATION_DATE</th>-->
+                                <!--<th>ACTION</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+
+                            <!--<tr class="success" th:each="data:${HistoryEventMessagesArray}">-->
+                                <!--<td th:text="${data.bytehub_id}"></td>-->
+                                <!--<td th:text="${data.digest}"></td>-->
+                                <!--<td th:text="${data.message}"></td>-->
+                                <!--<td th:text="${data.created_t}"></td>-->
+                                <!--<td>-->
+                                    <!--<button class="btn btn-warning ">View More</button>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+
+
+
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<script>-->
+                        <!--function openCity(evt, cityName) {-->
+                            <!--var i, tabcontent, tablinks;-->
+                            <!--tabcontent = document.getElementsByClassName("tabcontent");-->
+                            <!--for (i = 0; i < tabcontent.length; i++) {-->
+                                <!--tabcontent[i].style.display = "none";-->
+                            <!--}-->
+                            <!--tablinks = document.getElementsByClassName("tablinks");-->
+                            <!--for (i = 0; i < tablinks.length; i++) {-->
+                                <!--tablinks[i].className = tablinks[i].className.replace(" active", "");-->
+                            <!--}-->
+                            <!--document.getElementById(cityName).style.display = "block";-->
+                            <!--evt.currentTarget.className += " active";-->
+                        <!--}-->
+                    <!--</script>-->
+
+
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<br/>-->
+        <!--</div>-->
+        <!--<footer>-->
+            <!--<div class="pull-right">-->
+                <!--Bytehub by ROOTCORE-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+        <!--</footer>-->
+        <!--&lt;!&ndash; /footer content &ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+<!--</bodY>-->
+<!--</html>-->

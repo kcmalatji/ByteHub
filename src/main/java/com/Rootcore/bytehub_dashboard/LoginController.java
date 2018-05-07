@@ -18,15 +18,14 @@ public class LoginController {
     private Statement statement = null;
     private PreparedStatement preparedStatement=null;
     private ResultSet resultSet=null;
-
+    String userid;
     public void readDataBase(String name,String surname,String email, String password) throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
         connect=DriverManager.getConnection("jdbc:mysql://localhost:3306/bytehub_dashboard?autoReconnect=true&useSSL=false&"+"user=root&password=root");
         statement= connect.createStatement();
 
 
-        //resultSet=statement.executeQuery("select * from bytehub_dashboard.gateway_events");
-//        String sql ="INSERT INTO `users`('id' , `name`, `lastname`, `email`, `password`) VALUES (default,?,?,?,?)";
+
         String sql="insert into  bytehub_dashboard.users values (default ,?,?,?,?)";
         PreparedStatement preparedStatement = connect.prepareStatement(sql);
         preparedStatement.setString(1, name);
@@ -36,8 +35,27 @@ public class LoginController {
         preparedStatement.executeUpdate();
 
     }
+    public void Authorize(String email,String password ) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        connect=DriverManager.getConnection("jdbc:mysql://localhost:3306/bytehub_dashboard?autoReconnect=true&useSSL=false&"+"user=root&password=root");
+        statement= connect.createStatement();
+//        String Auth="SELECT id FROM bytehub_dashboard.users WHERE email='"+email +"' AND  password='"+password+"'";
+        resultSet=statement.executeQuery("SELECT id FROM bytehub_dashboard.users WHERE email='"+email +"' AND  password='"+password+"'");
+//      preparedStatement=connect.prepareStatement(Auth);
+//      preparedStatement.execute();
+        getid(resultSet);
+    }
 
+    public String getid(ResultSet resultSet)throws SQLException {
 
+        while (resultSet.next()) {
+            User user = new User();
+            userid = resultSet.getString("id");
+        }
+        System.out.println(userid);
+        return userid;
+
+    }
 
     @GetMapping("/")
     String login(Model model){
@@ -45,10 +63,16 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/")
-    String loginsubmit(@ModelAttribute User user){
-        System.out.println(user.name);
+    String loginsubmit(@ModelAttribute User user) throws SQLException, ClassNotFoundException {
+        Authorize(user.getEmail(),user.getPassword());
+if(userid!=null){
 
-        return "Dashboard";
+    return "Dashboard";
+}else{
+    return "login";
+}
+
+
     }
 
 
@@ -67,11 +91,7 @@ public class LoginController {
     @PostMapping("/register")
     String registersubmit(@ModelAttribute User register) throws Exception {
         readDataBase(register.getName(),register.getSurname(),register.getEmail(),register.getPassword());
-        System.out.println(register.getId());
-        System.out.println(register.getName());
-        System.out.println(register.getSurname());
-        System.out.println(register.getEmail());
-        System.out.println(register.getPassword());
+
         return "login";
     }
     @GetMapping("/forgot")

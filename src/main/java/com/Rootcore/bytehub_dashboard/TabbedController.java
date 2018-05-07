@@ -127,7 +127,9 @@ public class TabbedController {
     @GetMapping("/tabbedview")
     String tabbed(Model model) throws Exception {
 
-        readDataBase();
+        if(DATA.size()==0)
+        {
+            readDataBase();}
 //        System.out.println( DATA.size());
         model.addAttribute("data",DATA);
         model.addAttribute("gateway_event_messages",GatewayEventMessagesArray);

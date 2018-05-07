@@ -53,8 +53,11 @@ public class SearchViewController {
 
     @GetMapping("/searchview")
     String searchview(Model model) throws Exception {
-        readDataBase();
-        System.out.println( SEARCHVIEW.size());
+       if(SEARCHVIEW.size()==0)
+       {
+        readDataBase();}
+
+      System.out.println( SEARCHVIEW.size());
         model.addAttribute("SEARCHVIEW", SEARCHVIEW);
         return "SearchView";
     }

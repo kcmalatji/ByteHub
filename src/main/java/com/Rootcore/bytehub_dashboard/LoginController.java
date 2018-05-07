@@ -21,4 +21,24 @@ public class LoginController {
 
         return "Dashboard";
     }
+    @GetMapping("/register")
+    String register(){
+
+        return "register";
+    }
+    @PostMapping("/register")
+    String registersubmit(){
+
+        return "login";
+    }
+    @GetMapping("/forgot")
+    String forgot(){
+
+        return "forgot_password";
+    }
+    @PostMapping("/forgot")
+    String forgotsubmit(){
+
+        return "login";
+    }
 }

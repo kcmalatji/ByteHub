@@ -24,9 +24,9 @@
          <div class="card card-login mx-auto mt-5">
              <div class="card-header">Login</div>
              <div class="card-body">
-                 <form>
+                 <form action="#" th:action="@{/}"th:object="${user}" method="post">
                      <div class="form-group">
-                         <label for="exampleInputEmail1">Email address</label>
+                         <label for="exampleInputEmail1" th:field="*{name}">Email address</label>
                          <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
                      </div>
                      <div class="form-group">
@@ -39,7 +39,7 @@
                                  <input class="form-check-input" type="checkbox"> Remember Password</label>
                          </div>
                      </div>
-                     <a class="btn btn-primary btn-block" href="dashboard">Login</a>
+                     <p><input class="btn-success" type="submit" value="Submit" /> <input type="reset" class="btn-success" value="Reset" /></p>
                  </form>
                  <div class="text-center">
                      <a class="d-block small mt-3" href="register">Register an Account</a>

@@ -21,28 +21,28 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-            <form>
+            <form th:action="@{register}" th:object="${register}" method="post">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="exampleInputName">First name</label>
-                            <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name">
+                            <input class="form-control" id="exampleInputName" type="text" th:field="*{name}" aria-describedby="nameHelp" placeholder="Enter first name">
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputLastName">Last name</label>
-                            <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name">
+                            <input class="form-control" id="exampleInputLastName" type="text"th:field="*{surname}" aria-describedby="nameHelp" placeholder="Enter last name">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input class="form-control" id="exampleInputEmail1" type="email" th:field="*{email}" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="exampleInputPassword1">Password</label>
-                            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                            <input class="form-control" id="exampleInputPassword1" th:field="*{password}" type="password" placeholder="Password">
                         </div>
                         <div class="col-md-6">
                             <label for="exampleConfirmPassword">Confirm password</label>
@@ -50,7 +50,8 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary btn-block" href="/">Register</a>
+                <p><input type="submit" class="btn btn-success btn-block" value="Register" /> <input type="reset" value="Reset" /></p>
+
             </form>
             <div class="text-center">
                 <a class="d-block small mt-3" href="/">Login Page</a>
